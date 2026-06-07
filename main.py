@@ -132,11 +132,10 @@ def logout():
 
 @app.route('/')
 def get_all_posts():
-    form=RegisterForm()
-    user_id = request.form.get("id")
+    
     result = db.session.execute(db.select(BlogPost))
     posts = result.scalars().all()
-    return render_template("index.html", all_posts=posts, id=user_id)
+    return render_template("index.html", all_posts=posts)
 
 
 @app.route("/post/<int:post_id>", methods=["GET","POST"])
